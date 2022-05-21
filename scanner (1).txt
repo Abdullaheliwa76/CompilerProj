@@ -1,0 +1,642 @@
+using System;
+
+
+namespace demo;
+ 
+
+class program
+{
+    static void Main(string[] args)
+    {
+        char[] litters = new char[44];
+        litters[0] = 'i';
+        litters[1] = 'p';
+        litters[2] = 'o';
+        litters[3] = 'k';
+        litters[4] = 'f';
+        litters[5] = 'n';
+        litters[6] = 'e';
+        litters[7] = 'r';
+        litters[8] = 't';
+        litters[9] = 'y';
+        litters[10] = 's';
+        litters[11] = 'q';
+        litters[12] = 'u';
+        litters[13] = 'c';
+        litters[14] = 'a';
+        litters[15] = 'w';
+        litters[16] = 'h';
+        litters[17] = 'v';
+        litters[18] = 'l';
+        litters[19] = 'd';
+        litters[20] = '@';
+        litters[21] = '^';
+        litters[22] = '$';
+        litters[23] = '#';
+        litters[24] = '&';
+        litters[25] = '|';
+        litters[26] = '~';
+        litters[27] = '+';
+        litters[28] = '-';
+        litters[29] = '*';
+        litters[30] = '/';
+        litters[31] = '=';
+        litters[32] = '<';
+        litters[33] = '>';
+        litters[34] = '!';
+        litters[35] = '[';
+        litters[36] = ']';
+        litters[37] = '{';
+        litters[38] = '}';
+        litters[39] = '"';
+        litters[40] = '\'';
+        litters[41] = '(';
+        litters[42] = ')';
+        litters[43] = ';';
+
+        String[] tokens = new String[150];
+
+        tokens[6] = "condition";
+        tokens[4] = "integer";
+        tokens[5] = "float";
+        tokens[96] = "start";
+        tokens[97] = "start";
+        tokens[98] = "end";
+        tokens[99] = "end";
+        tokens[107] = "logic";
+        tokens[100] = "operator";
+        tokens[115] = "operator";
+        tokens[129] = "operator";
+        tokens[102] = "operator";
+        tokens[108] = "assinment";
+        tokens[111] = "relation";
+        tokens[110] = "relation";
+        tokens[119] = "brace";
+        tokens[120] = "brace";
+        tokens[118] = "brace";
+        tokens[117] = "brace";
+        tokens[123] = "quot";
+        tokens[122] = "quot";
+        tokens[10] = "inhertance";
+        tokens[104] = "logic";
+        tokens[106] = "logic";
+        tokens[133] = "comment";
+        tokens[109] = "relation";
+        tokens[134] = "relation";
+        tokens[114] = "relation";
+        tokens[113] = "relation";
+        tokens[132] = "comment";
+        tokens[116] = "access";
+        tokens[131] = "comment";
+        tokens[15] = "sinteger";
+        tokens[16] = "sfloat";
+        tokens[23] = "string";
+        tokens[26] = "switch";
+        tokens[29] = "struct";
+        tokens[37] = "boolean";
+        tokens[47] = "return";
+        tokens[51] = "character";
+        tokens[61] = "switch";
+        tokens[65] = "class";
+        tokens[69] = "condition";
+        tokens[78] = "void";
+        tokens[84] = "break";
+        tokens[91] = "loop";
+        tokens[95] = "loop";
+        tokens[128] = "inclusion";
+        tokens[101] = "identifier";
+        tokens[121] = "constant";
+        tokens[135] = "brace";
+        tokens[136] = "brace";
+        tokens[137] = "semicolon";
+
+
+
+
+        int[ , ] transtionT = new int[150 , 45];
+
+        for(int i = 0; i < 140; i++)
+        {
+            for (int j = 0; j < 41; j++)
+            {
+                transtionT[i, j] = 0;
+            }
+        }
+
+
+        transtionT[0, 0] = 1;
+        transtionT[1, 1] = 2;
+        transtionT[2, 2] = 3;
+        transtionT[1, 4] = 6;
+        transtionT[1, 5] = 7;
+        transtionT[0, 6] = 66;
+        transtionT[0, 7] = 30;
+        transtionT[0, 8] = 62;
+        transtionT[0, 10] = 11;
+        transtionT[0, 13] = 48;
+        transtionT[0, 15] = 92;
+        transtionT[0, 16] = 85;
+        transtionT[0, 17] = 70;
+        transtionT[0, 20] = 96;
+        transtionT[0, 21] = 97;
+        transtionT[0, 22] = 98;
+        transtionT[0, 23] = 99;
+        transtionT[0, 24] = 103;
+        transtionT[0, 25] = 105;
+        transtionT[0, 26] = 107;
+        transtionT[0, 27] = 100;
+        transtionT[0, 28] = 115;
+        transtionT[0, 29] = 129;
+        transtionT[0, 30] = 102;
+        transtionT[0, 31] = 108;
+        transtionT[0, 32] = 111;
+        transtionT[0, 33] = 110;
+        transtionT[0, 34] = 112;
+        transtionT[0, 35] = 119;
+        transtionT[0, 36] = 120;
+        transtionT[0, 37] = 117;
+        transtionT[0, 38] = 118;
+        transtionT[0, 39] = 123;
+        transtionT[0, 40] = 122;
+        transtionT[3, 3] = 4;
+        transtionT[4, 4] = 5;
+        transtionT[7, 4] = 8;
+        transtionT[8, 6] = 9;
+        transtionT[9, 7] = 10;
+        transtionT[11, 7] = 27;
+        transtionT[11, 6] = 17;
+        transtionT[11, 13] = 24;
+        transtionT[11, 0] = 12;
+        transtionT[12, 1] = 13;
+        transtionT[13, 2] = 14;
+        transtionT[14, 3] = 15;
+        transtionT[15, 4] = 16;
+        transtionT[17, 11] = 18;
+        transtionT[18, 12] = 19;
+        transtionT[19, 6] = 20;
+        transtionT[20, 5] = 21;
+        transtionT[21, 13] = 22;
+        transtionT[22, 6] = 23;
+        transtionT[24, 14] = 25;
+        transtionT[25, 5] = 26;
+        transtionT[27, 14] = 28;
+        transtionT[28, 1] = 29;
+        transtionT[30, 6] = 38;
+        transtionT[30, 14] = 31;
+        transtionT[31, 8] = 32;
+        transtionT[32, 0] = 33;
+        transtionT[33, 2] = 34;
+        transtionT[34, 5] = 35;
+        transtionT[35, 14] = 36;
+        transtionT[36, 18] = 37;
+        transtionT[38, 10] = 39;
+        transtionT[38, 11] = 124;
+        transtionT[39,1] = 40;
+        transtionT[40, 2] = 41;
+        transtionT[41, 5] = 42;
+        transtionT[42, 19] = 43;
+        transtionT[43, 15] = 44;
+        transtionT[44, 0] = 45;
+        transtionT[45, 8] = 46;
+        transtionT[46, 16] = 47;
+        transtionT[48, 7] = 49;
+        transtionT[48, 2] = 52;
+        transtionT[49, 14] = 50;
+        transtionT[50, 4] = 51;
+        transtionT[52, 5] = 53;
+        transtionT[53, 19] = 54;
+        transtionT[54, 0] = 55;
+        transtionT[55, 8] = 56;
+        transtionT[56, 0] = 57;
+        transtionT[57, 2] = 58;
+        transtionT[58, 5] = 59;
+        transtionT[59, 2] = 60;
+        transtionT[60, 4] = 61;
+        transtionT[62, 9] = 63;
+        transtionT[63, 1] = 64;
+        transtionT[64, 6] = 65;
+        transtionT[66, 17] = 67;
+        transtionT[66, 5] = 79;
+        transtionT[66, 18] = 67;
+        transtionT[67, 10] = 68;
+        transtionT[68, 6] = 69;
+        transtionT[70, 14] = 71;
+        transtionT[71, 18] = 72;
+        transtionT[72, 12] = 73;
+        transtionT[73, 6] = 74;
+        transtionT[74, 18] = 75;
+        transtionT[75, 6] = 76;
+        transtionT[76, 10] = 77;
+        transtionT[77, 10] = 78;
+        transtionT[79, 19] = 80;
+        transtionT[80, 8] = 81;
+        transtionT[81, 16] = 82;
+        transtionT[82, 0] = 83;
+        transtionT[83, 10] = 84;
+        transtionT[85, 2] = 86;
+        transtionT[86, 15] = 87;
+        transtionT[87, 6] = 88;
+        transtionT[88, 17] = 89;
+        transtionT[89, 6] = 90;
+        transtionT[90, 7] = 91;
+        transtionT[92, 16] = 93;
+        transtionT[93, 6] = 94;
+        transtionT[94, 5] = 95;
+        transtionT[125, 0] = 126;
+        transtionT[124, 12] = 125;
+        transtionT[126, 7] = 127;
+        transtionT[127, 6] = 128;
+        transtionT[103, 24] = 104;
+        transtionT[105, 25] = 106;
+        transtionT[102, 33] = 133;
+        transtionT[108, 31] = 109;
+        transtionT[110, 31] = 134;
+        transtionT[111, 30] = 132;
+        transtionT[111, 31] = 114;
+        transtionT[112, 31] = 113;
+        transtionT[115, 33] = 116;
+        transtionT[129, 29] = 130;
+        transtionT[130, 29] = 131;
+        transtionT[0, 41] = 135;
+        transtionT[0, 42] = 136;
+        transtionT[0, 43] = 137;
+
+
+
+        char[] invalid = { '!', '@', '#', '$', '%', '^', '&', '|', '*', '(', ')', '-', '=', '+', '/', '[', ']', '{', '}', ';', '\'', '"', '~', '<', '>' };
+
+
+
+
+
+
+        Console.WriteLine("Please enter file path:");
+        string filePath = Console.ReadLine();
+
+        String[] codeLines = new String[100];
+        int x = 0;
+
+        StreamReader lines = new StreamReader(filePath);
+
+        String str = lines.ReadLine();
+
+        if(str != null)
+        {
+            codeLines[0] = str;
+            while(true)
+            {
+                str = lines.ReadLine();
+                x++;
+                if (str == null)
+                {
+                    break;
+                }
+                codeLines[x] = str;
+                
+            }
+        }
+
+        //String[] tokens_return = new String[100];
+
+
+        
+
+
+        String[] allTokens = new String[100];
+
+        String[] allTValues = new String[100];
+
+        int[] linNum = new int[100];
+
+        int tokenNum = 0;
+
+        int errorNum = 0;
+
+
+
+
+
+        bool commFlag1 = false;
+
+        for (int i = 0; i < x; i++)
+        {
+
+            bool commflag2 = false;
+
+            int currState = 0;
+
+            int tempIDState = 1;
+
+            int tempCONSTState = 0;
+
+            int indexX = 0;
+
+            int indexY = 0;
+
+            //int tokenscount = 0;
+
+            int fconst = 0;
+
+            bool flag = true;
+
+
+            String valueT = "";
+
+
+
+            
+            for( int k = 0; k < codeLines[i].Length; k++ )
+            {
+
+
+
+
+                foreach (char c2 in invalid)
+                {
+                    if (codeLines[i][k] == c2)
+                    {
+                        tempIDState = 0;
+                    }
+                }
+
+                if(k == codeLines[i].Length-1)
+                {
+
+
+
+                    flag = false;
+                    tempCONSTState = 0;
+                    for (int j = 0; j < litters.Length; j++)
+                    {
+                        if (codeLines[i][k] == litters[j])
+                        {
+                            indexX = j;
+                            indexY = currState;
+                            break;
+                        }
+                    }
+                    currState = transtionT[indexY, indexX];
+                    valueT += codeLines[i][k];
+
+
+                
+
+                    if (tempCONSTState == 1 && fconst == 1)
+                    {
+                        currState = 121;
+                    }
+
+                    if (tempIDState == 1 && currState == 0)
+                    {
+                        currState = 101;
+                    }
+
+                    //String sttr = "Token in line " + i + " is ";
+
+
+                    if (currState == 131)
+                    {
+                        commflag2 = true;
+                    }
+
+                    if (currState == 132)
+                    {
+                        commFlag1 = true;
+                    }
+
+                    if (currState == 133)
+                    {
+                        commFlag1 = false;
+                    }
+
+                    String curtok = "";
+
+                    if (commFlag1 || commflag2)
+                    {
+                        curtok = "comment";
+                    }
+                    else if (currState == 0)
+                    {
+                        curtok = "error";
+                        errorNum++;
+                    }
+                    else
+                    {
+                        curtok = tokens[currState];
+                    }
+
+
+
+                    if (curtok == null && tempIDState == 1)
+                    {
+                        curtok = "identifier";
+                    }
+
+                    else if (curtok == null)
+                    {
+                        curtok = "error";
+                        errorNum++;
+                    }
+
+                    allTokens[tokenNum] = curtok;
+
+                    allTValues[tokenNum] = valueT;
+
+                    linNum[tokenNum] = i + 1;
+
+                    tokenNum++;
+
+                    valueT = "";
+
+
+                    //sttr += curtok;
+
+                    //tokens_return[tokenscount] = sttr;
+
+                    //tokenscount++;
+
+                    currState = 0;
+
+                    tempIDState = 1;
+
+                    tempCONSTState = 0;
+
+                    indexX = 0;
+
+                    indexY = 0;
+
+                    flag = true;
+                }
+
+
+
+
+                if (codeLines[i][k] == ' ' || codeLines[i][k] == '\t')
+                {
+                    
+                    if (tempCONSTState == 1 && fconst == 1)
+                    {
+                        currState = 121;
+                    }
+
+                    if (tempIDState == 1 && currState == 0)
+                    {
+                        currState = 101;
+                    }
+
+                    //String sttr = "Token in line " + i + " is ";
+
+
+                    if(currState == 131)
+                    {
+                        commflag2 = true;
+                    }
+
+                    if (currState == 132)
+                    {
+                        commFlag1 = true;
+                    }
+
+                    if (currState == 133)
+                    {
+                        commFlag1 = false;
+                    }
+
+                    String curtok = "";
+
+                    if (commFlag1 || commflag2)
+                    {
+                        curtok = "comment";
+                    }
+                    else if(currState == 0)
+                    {
+                        curtok = "error";
+                        errorNum++;
+                    }
+                    else
+                    {
+                        curtok = tokens[currState];
+                    }
+
+
+
+                    if (curtok == null && tempIDState == 1)
+                    {
+                        curtok = "identifier";
+                    }
+
+                    else if (curtok == null)
+                    {
+                        curtok = "error";
+                        errorNum++;
+                    }
+
+                    allTokens[tokenNum] = curtok;
+
+                    allTValues[tokenNum] = valueT;
+
+                    linNum[tokenNum] = i + 1;
+
+                    tokenNum++;
+
+                    valueT = "";
+
+
+                    //sttr += curtok;
+
+                    //tokens_return[tokenscount] = sttr;
+
+                    //tokenscount++;
+
+                    currState = 0;
+
+                    tempIDState = 1;
+
+                    tempCONSTState = 0;
+
+                    indexX = 0;
+
+                    indexY = 0;
+
+                    flag = true;
+
+                }
+
+
+
+
+
+
+
+                else if (codeLines[i][k] >= '0' && codeLines[i][k] <= '9')
+                {
+                    if (flag)
+                    {
+                        tempIDState = 0;
+                        fconst = 1;
+                    }
+
+                    flag = false;
+                    tempCONSTState = 1;
+
+
+                    valueT += codeLines[i][k];
+                }
+
+
+
+
+
+
+
+
+              
+                else
+                {
+                    flag = false;
+                    tempCONSTState = 0;
+                    for (int j = 0; j < litters.Length; j++)
+                    {
+                        if(codeLines[i][k] == litters[j])
+                        {
+                            indexX = j;
+                            indexY = currState;
+                            break;
+                        }
+                    }
+                    currState = transtionT[indexY, indexX];
+                    valueT += codeLines[i][k];
+                }
+            }
+        }
+
+
+
+
+        for (int i = 0; i < tokenNum; i++)
+        {
+            Console.WriteLine("Token " + allTValues[i] + " :  line " + linNum[i] + "  is " + allTokens[i]);
+        }
+
+
+        Console.WriteLine(errorNum);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+}
